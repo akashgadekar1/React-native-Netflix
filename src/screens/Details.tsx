@@ -2,26 +2,28 @@ import {ImageBackground, Text, View} from 'react-native';
 import React from 'react';
 import {ColorTypes, fontTypes, height, width} from '../../config/Config';
 
-import CommButton from '../CommonCompoent/CommButton';
 import LinearGradient from 'react-native-linear-gradient';
 
-import Icon from 'react-native-vector-icons/AntDesign';
-import Entypo from 'react-native-vector-icons/Entypo';
-import {MainCard} from '../CardCompoent/MainCard';
+import RecombidedMovie from '../CardCompoent/RecombidedMovie';
+import {useRoute} from '@react-navigation/native';
 
 export default function Details() {
+  const route = useRoute();
+  const {id, imgURL} = route.params;
+  console.log({id});
+
   return (
-    <>
+    <View style={{backgroundColor: 'black', flex: 1}}>
       <View>
         <ImageBackground
           source={{
-            uri: 'https://watertower-music.com/images/covers/The%20Sandman_S1_Choral.jpg',
+            uri: imgURL,
           }}
-          resizeMode="contain"
+          resizeMode="cover"
           imageStyle={{borderRadius: 8}}
           style={{
             height: height / 1.6,
-            width: width / 1,
+            width: '100%',
             marginRight: 10,
           }}>
           <LinearGradient
@@ -125,10 +127,9 @@ export default function Details() {
           creating
         </Text>
       </View>
-      <View style={{margin: 12}}>
-        <Text style={{color: 'white'}}>Realted Movie</Text>
-        <MainCard />
+      <View style={{margin: 1}}>
+        <RecombidedMovie />
       </View>
-    </>
+    </View>
   );
 }

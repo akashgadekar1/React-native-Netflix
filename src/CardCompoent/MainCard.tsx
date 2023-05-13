@@ -15,7 +15,7 @@ export const MainCard: React.FC<MainCardPageProps> = ({url}) => {
         <ScrollView horizontal>
           <ImageBackground
             source={{
-              uri: 'https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-MTIsIE1heSAyMDIz,ots-29,otc-FFFFFF,oy-612,ox-24:q-80/et00342635-fmqkrgggam-portrait.jpg',
+              uri: url,
             }}
             resizeMode="cover"
             imageStyle={{borderRadius: 8}}

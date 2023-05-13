@@ -6,7 +6,7 @@ import {call, put, takeLatest} from 'redux-saga/effects';
 function* getMovieasync() {
   try {
     const result = yield call(doGetMovieApi);
-    console.log(result);
+    // console.log(result);
     if (result) {
       yield put(GetMovieDetailsSuccess(result.data.results));
     }

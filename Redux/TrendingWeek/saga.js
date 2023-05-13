@@ -7,7 +7,7 @@ const {GetMovieWeekSuccess, GetMovieWeekError} = require('./action');
 function* getTrendingasync() {
   try {
     const result = yield call(doGetTrendingWeekApi);
-    console.log(result);
+    // console.log(result);
     if (result) {
       yield put(GetMovieWeekSuccess(result.data.results));
     }

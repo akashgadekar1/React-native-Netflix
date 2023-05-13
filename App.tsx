@@ -30,20 +30,34 @@ import TrendingCard from './src/CardsCompoents/TrendingCard';
 import TrendingWeekCard from './src/CardsCompoents/TrendingWeekCard';
 import Home from './src/CardCompoent/Home';
 import Details from './src/screens/Details';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Homescreens from './src/screens/Homescreens';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <View style={{flex: 1, backgroundColor: ColorTypes.black}}>
-      <StatusBar translucent backgroundColor="transparent" />
+    <NavigationContainer>
       <Provider store={store}>
-        <ScrollView>
-          {/* <Home /> */}
-          {/* <TrendingCard />
-          <TrendingWeekCard /> */}
-          <Details />
-        </ScrollView>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="HomeScreen"
+            component={Homescreens}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="DetailScreen"
+            component={Details}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack.Navigator>
       </Provider>
-    </View>
+    </NavigationContainer>
   );
 };
 
