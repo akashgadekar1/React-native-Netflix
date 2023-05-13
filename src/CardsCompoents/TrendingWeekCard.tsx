@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {Pressable, ScrollView, Text, View} from 'react-native';
 
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -7,16 +7,22 @@ import {fontTypes, PortraitImageBaseURL} from '../../config/Config';
 import {GetMovieWeek} from '../../Redux/TrendingWeek/action';
 
 import MainCard2 from '../CardCompoent/MainCard2';
+import {GetMovieDetails} from '../../Redux/TrendingDay/action';
+import {useNavigation} from '@react-navigation/native';
 
 function TrendingWeekCard() {
-  const [data, setData] = useState([]);
-
   const dispatch = useDispatch();
-  const MovieDay = useSelector(state => state.TrendingWeek.respdata);
+  const navigation = useNavigation();
+  const MovieDay = useSelector(state => state.Trendingday.respdata);
+  const isLoading = useSelector(state => state.Trendingday.loading);
 
   useEffect(() => {
-    dispatch(GetMovieWeek());
+    dispatch(GetMovieDetails());
   }, []);
+
+  const navigate = (id: string) => {
+    navigation.navigate('DetailScreen', {id: id});
+  };
   return (
     <View>
       <Text
@@ -33,12 +39,14 @@ function TrendingWeekCard() {
           MovieDay.length > 0 &&
           MovieDay.map((item, index: number) => {
             return (
-              <MainCard2
-                key={index}
-                url={PortraitImageBaseURL + item.backdrop_path}
-                release_date={item.release_date}
-                vote_average={item.vote_average.toFixed(1)}
-              />
+              <Pressable key={index} onPress={() => navigate(item.id)}>
+                <MainCard2
+                  key={index}
+                  url={PortraitImageBaseURL + item.backdrop_path}
+                  release_date={item.release_date}
+                  vote_average={item.vote_average.toFixed(1)}
+                />
+              </Pressable>
             );
           })}
       </ScrollView>

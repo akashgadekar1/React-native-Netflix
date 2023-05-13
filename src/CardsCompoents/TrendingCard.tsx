@@ -22,10 +22,9 @@ export type MovieResponse = {
   id: string;
   url: string;
   backdrop_path: string;
+  poster_path: string;
 };
 function Trendingday() {
-  const [data, setData] = useState([]);
-
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const MovieDay = useSelector(state => state.Trendingday.respdata);
@@ -35,8 +34,8 @@ function Trendingday() {
     dispatch(GetMovieDetails());
   }, []);
 
-  const navigate = (id: string, imgURL: string) => {
-    navigation.navigate('DetailScreen', {id: id, imgURL: imgURL});
+  const navigate = (id: string) => {
+    navigation.navigate('DetailScreen', {id: id});
   };
 
   return (
@@ -56,14 +55,10 @@ function Trendingday() {
           MovieDay.length > 0 &&
           MovieDay.map((item: MovieResponse, index: number) => {
             return (
-              <Pressable
-                key={index}
-                onPress={() =>
-                  navigate(item.id, PortraitImageBaseURL + item.backdrop_path)
-                }>
+              <Pressable key={index} onPress={() => navigate(item.id)}>
                 <MainCard
                   key={index}
-                  url={LandScapeImageBaseURL + item.backdrop_path}
+                  url={LandScapeImageBaseURL + item.poster_path}
                   // release_date={item.release_date}
                   // vote_average={item.vote_average.toFixed(1)}
                 />

@@ -1,6 +1,7 @@
 import {View, Text, ImageBackground, ScrollView} from 'react-native';
 import React from 'react';
 import {height, width} from '../../config/Config';
+import Animated, {FadeInRight, FlipInXUp} from 'react-native-reanimated';
 
 export type MainCardPageProps = {
   url: string;
@@ -11,7 +12,7 @@ export type MainCardPageProps = {
 export const MainCard: React.FC<MainCardPageProps> = ({url}) => {
   return (
     <>
-      <View style={{marginTop: 20}}>
+      <Animated.View entering={FlipInXUp} style={{marginTop: 20}}>
         <ScrollView horizontal>
           <ImageBackground
             source={{
@@ -25,7 +26,7 @@ export const MainCard: React.FC<MainCardPageProps> = ({url}) => {
               marginRight: 10,
             }}></ImageBackground>
         </ScrollView>
-      </View>
+      </Animated.View>
     </>
   );
 };

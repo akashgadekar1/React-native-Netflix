@@ -87,44 +87,6 @@ const MainCard2: React.FC<MovieDetailsPageProps> = ({
                 {vote_average} Rating
               </Text>
             </View>
-            <View style={{flexDirection: 'row'}}>
-              <View
-                style={{
-                  height: 30,
-                  borderRadius: 20,
-                  width: 90,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-
-                  marginRight: 20,
-
-                  backgroundColor: 'rgb(100, 1, 20)',
-                }}>
-                <Text
-                  style={{
-                    color: 'white',
-                    fontSize: 13,
-                    textAlign: 'center',
-                    fontFamily: fontTypes.medium,
-                  }}>
-                  Watch Now
-                </Text>
-              </View>
-
-              <View
-                style={{
-                  height: 30,
-                  width: 30,
-                  borderRadius: 30,
-
-                  marginRight: 30,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: 'rgb(100, 1, 20)',
-                }}>
-                <Text style={{fontSize: 18, color: ColorTypes.white}}>+</Text>
-              </View>
-            </View>
           </View>
         </LinearGradient>
       </ImageBackground>
