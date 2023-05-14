@@ -18,8 +18,6 @@ const RecommendedMovies: React.FC<RecommendedMoviesTypes> = ({id}) => {
 
   const recommended = useSelector(state => state.Recommbeded.respdata);
 
-  console.log({recommended});
-
   useEffect(() => {
     dispatch(GetMovieDetailsRecommend(id));
   }, []);

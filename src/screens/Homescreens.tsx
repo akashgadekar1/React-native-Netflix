@@ -3,15 +3,17 @@ import React from 'react';
 import Home from '../CardCompoent/Home';
 import TrendingWeekCard from '../CardsCompoents/TrendingWeekCard';
 import TrendingCard from '../CardsCompoents/TrendingCard';
+import ActionMovie from '../CardsCompoents/ActionMovie';
 
 export default function Homescreens() {
   return (
-    <View style={{backgroundColor: 'black'}}>
+    <View style={{backgroundColor: 'black', flex: 1}}>
       <StatusBar translucent backgroundColor="transparent" />
       <ScrollView>
         <Home />
         <TrendingCard />
         <TrendingWeekCard />
+        <ActionMovie />
       </ScrollView>
     </View>
   );

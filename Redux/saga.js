@@ -4,6 +4,7 @@ import {watchGetMovieWeekAsync} from './TrendingWeek/saga';
 import {watchGetMovieRecommendAsync} from './RecombdedMovie/saga';
 import {watchGetDetailsAsync} from './Details/saga';
 import {watchGetCastDetailsAsync} from './CastCredit/saga';
+import {watchGetActionMovieAsync} from './ActionMovie/saga';
 
 export function* rootSaga() {
   yield all([
@@ -12,5 +13,6 @@ export function* rootSaga() {
     fork(watchGetMovieRecommendAsync),
     fork(watchGetDetailsAsync),
     fork(watchGetCastDetailsAsync),
+    fork(watchGetActionMovieAsync),
   ]);
 }

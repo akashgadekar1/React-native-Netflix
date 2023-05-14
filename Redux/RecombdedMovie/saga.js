@@ -9,12 +9,10 @@ import {
 function* getMovieRecommendasync(action) {
   try {
     const result = yield call(doGetRecommendedApi, action.id);
-    console.log('getMovieRecommendasync', result);
     if (result) {
       yield put(GetMovieDetailsRecommendSuccess(result.data.results));
     }
   } catch (error) {
-    console.log('getMovieRecommendasynce', error);
     yield put(GetMovieDetailsRecommendError(error));
   }
 }

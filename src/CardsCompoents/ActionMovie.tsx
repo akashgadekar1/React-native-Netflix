@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {Pressable, ScrollView, Text, View} from 'react-native';
-
+import {View, Text, ScrollView, Pressable} from 'react-native';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
+import {GetActionMovie} from '../../Redux/ActionMovie/action';
 import {MainCard} from '../CardCompoent/MainCard';
-import {GetMovieDetails} from '../../Redux/TrendingDay/action';
 import {
   LandScapeImageBaseURL,
   PortraitImageBaseURL,
   fontTypes,
 } from '../../config/Config';
-import {useNavigation} from '@react-navigation/native';
 
 export type MovieResponse = {
   id: string;
@@ -18,14 +17,14 @@ export type MovieResponse = {
   backdrop_path: string;
   poster_path: string;
 };
-function Trendingday() {
+
+function ActionMovie() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const MovieDay = useSelector(state => state.Trendingday.respdata);
-  const isLoading = useSelector(state => state.Trendingday.loading);
+  const actionmovie = useSelector(state => state.ActionMovie.respdata);
 
   useEffect(() => {
-    dispatch(GetMovieDetails());
+    dispatch(GetActionMovie());
   }, []);
 
   const navigate = (id: string) => {
@@ -42,17 +41,17 @@ function Trendingday() {
           fontFamily: fontTypes.medium,
           fontSize: 20,
         }}>
-        Trending Movie Day
+        Action Movie hello
       </Text>
       <ScrollView horizontal>
-        {MovieDay &&
-          MovieDay.length > 0 &&
-          MovieDay.map((item: MovieResponse, index: number) => {
+        {actionmovie &&
+          actionmovie.length > 0 &&
+          actionmovie.map((item: MovieResponse, index: number) => {
             return (
               <Pressable key={index} onPress={() => navigate(item.id)}>
                 <MainCard
                   key={index}
-                  url={LandScapeImageBaseURL + item.poster_path}
+                  url={PortraitImageBaseURL + item.poster_path}
                 />
               </Pressable>
             );
@@ -61,5 +60,4 @@ function Trendingday() {
     </View>
   );
 }
-
-export default Trendingday;
+export default ActionMovie;

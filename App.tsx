@@ -41,7 +41,10 @@ const App = () => {
   return (
     <NavigationContainer>
       <Provider store={store}>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            animation: 'slide_from_right',
+          }}>
           <Stack.Screen
             name="Home"
             component={Homescreens}
