@@ -1,11 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  ActivityIndicator,
-  Pressable,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
+import {Pressable, ScrollView, Text, View} from 'react-native';
 
 import {useDispatch, useSelector} from 'react-redux';
 

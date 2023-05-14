@@ -7,7 +7,7 @@ import {doGetDetailsAPI} from '../../Api/DetailsApi';
 function* getDetailsAsync(action) {
   try {
     const result = yield call(doGetDetailsAPI, action.id);
-    console.log('in saga', result.data);
+    // console.log('in saga', result.data);
     if (result) {
       yield put(getPostDetailsSuccess(result.data));
     }

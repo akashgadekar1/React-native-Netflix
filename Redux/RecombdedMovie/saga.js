@@ -1,20 +1,20 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
 import {GET_MOVIE_DETAILS_RECOMMEND} from './actionTypes';
 import {doGetRecommendedApi} from '../../Api/Recommended';
-
-const {
-  GetMovieDetailsRecommendSuccess,
+import {
   GetMovieDetailsRecommendError,
-} = require('./action');
+  GetMovieDetailsRecommendSuccess,
+} from './action';
 
 function* getMovieRecommendasync(action) {
   try {
     const result = yield call(doGetRecommendedApi, action.id);
-    console.log({result});
+    console.log('getMovieRecommendasync', result);
     if (result) {
       yield put(GetMovieDetailsRecommendSuccess(result.data.results));
     }
   } catch (error) {
+    console.log('getMovieRecommendasynce', error);
     yield put(GetMovieDetailsRecommendError(error));
   }
 }

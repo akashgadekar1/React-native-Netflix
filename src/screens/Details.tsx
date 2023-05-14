@@ -1,4 +1,11 @@
-import {ActivityIndicator, ImageBackground, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  ImageBackground,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import React, {useEffect} from 'react';
 import {
   ColorTypes,
@@ -10,25 +17,28 @@ import {
 
 import LinearGradient from 'react-native-linear-gradient';
 
-import RecombidedMovie from '../CardCompoent/RecombidedMovie';
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {GetPostDetails} from '../../Redux/Details/action';
-import Animated, {
-  FadeInLeft,
-  FadeInRight,
-  FadeOutRight,
-} from 'react-native-reanimated';
+import Genres from '../../Details/Genres';
+import ActorCast from '../../Details/ActorCast';
+import Icon from 'react-native-vector-icons/AntDesign';
+import Home from '../CardCompoent/Home';
+import RecombidedMovie from '../components/details/RecommendedMovies';
+import Recombinded from '../ReusableCompoents/Recombinded';
+import RecommendedMovies from '../components/details/RecommendedMovies';
+import FastImage from 'react-native-fast-image';
 
 export default function Details() {
+  const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
+  const {id} = route.params;
   const detailsData = useSelector(state => state.details.respData);
-  const loading = useSelector(state => state.details.loading);
-  console.log(detailsData);
+
+  console.log({id});
 
   useEffect(() => {
-    const {id} = route.params;
     dispatch(GetPostDetails(id));
   }, []);
 
@@ -36,145 +46,199 @@ export default function Details() {
   const formattedDate = date.getFullYear();
 
   return (
-    <>
-      {detailsData && (
-        <View style={{backgroundColor: 'black', flex: 1}}>
-          <View>
-            <ImageBackground
-              source={{
-                uri: PortraitImageBaseURL + detailsData.poster_path,
-              }}
-              resizeMode="cover"
-              imageStyle={{borderRadius: 8}}
-              style={{
-                height: height / 1.6,
-                width: '100%',
-                marginRight: 10,
-              }}>
-              <LinearGradient
-                colors={['transparent', ColorTypes.black]}
+    <View style={{backgroundColor: 'black', flex: 1}}>
+      <ScrollView>
+        {detailsData && (
+          <View style={{backgroundColor: 'black', flex: 1}}>
+            <View>
+              <FastImage
+                source={{
+                  uri: PortraitImageBaseURL + detailsData.poster_path,
+                  priority: FastImage.priority.high,
+                }}
+                resizeMode="cover"
                 style={{
-                  height: 100,
+                  height: height / 1.6,
                   width: '100%',
-                  bottom: 0,
-                  position: 'absolute',
-                  paddingLeft: 15,
-                  paddingRight: 15,
-                  borderRadius: 5,
-                }}></LinearGradient>
-            </ImageBackground>
-            {/* Year View */}
-            <View
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                justifyContent: 'space-around',
-                flexDirection: 'row',
-                width: width - 20,
-                marginTop: 20,
-              }}>
-              <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                <Text
+                  marginRight: 10,
+                  borderRadius: 8,
+                }}>
+                <LinearGradient
+                  colors={['transparent', ColorTypes.black]}
                   style={{
-                    color: 'white',
-                    justifyContent: 'center',
-                    fontSize: 18,
-                    fontFamily: fontTypes.medium,
-                  }}>
-                  {formattedDate}
-                </Text>
-                <Text
-                  style={{
-                    color: 'white',
-                    justifyContent: 'center',
-                    fontSize: 14,
-                    fontFamily: fontTypes.medium,
-                  }}>
-                  Year
-                </Text>
-              </View>
-              <View>
-                <Text
-                  style={{
-                    color: 'white',
-                    justifyContent: 'center',
-                    fontSize: 18,
-                    fontFamily: fontTypes.medium,
-                  }}>
-                  {detailsData.vote_average}
-                </Text>
-                <Text
-                  style={{
-                    color: 'white',
-                    justifyContent: 'center',
-                    fontSize: 14,
-                    fontFamily: fontTypes.medium,
-                  }}>
-                  IMDB
-                </Text>
-              </View>
-              <View>
-                <Text
-                  style={{
-                    color: 'white',
+                    height: 100,
+                    width: '100%',
+                    bottom: 0,
+                    position: 'absolute',
+                    paddingLeft: 15,
+                    paddingRight: 15,
+                    borderRadius: 5,
+                  }}></LinearGradient>
 
-                    fontSize: 18,
-                    fontFamily: fontTypes.medium,
-                  }}>
-                  2h 35m
-                </Text>
-                <Text
+                {/* HomeScrren Move Button */}
+                <Pressable
+                  onPress={() => navigation.goBack()}
                   style={{
-                    color: 'white',
-
-                    fontSize: 14,
-                    fontFamily: fontTypes.medium,
-                  }}>
-                  Time
-                </Text>
-              </View>
-            </View>
-            {/* Year View end*/}
-          </View>
-          <View style={{marginTop: 14}}>
-            <View style={{flexDirection: 'row'}}>
-              {detailsData.genres.map((item, index: number) => (
-                <Animated.View
-                  entering={FadeInRight}
-                  // exiting={FadeOutRight}
-                  style={{
-                    height: 25,
-                    marginLeft: 10,
-                    paddingHorizontal: 5,
-                    borderWidth: 1,
-                    borderColor: 'gray',
+                    borderRadius: 30,
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     justifyContent: 'center',
                     alignItems: 'center',
+                    height: 30,
+                    marginTop: 50,
+                    width: 30,
+                    marginLeft: 12,
                   }}>
-                  <Text style={{color: 'white', fontFamily: fontTypes.medium}}>
-                    {item.name}
+                  <Icon name="left" size={18} color="white" />
+                </Pressable>
+                {/* HomeScrren Move Button */}
+              </FastImage>
+
+              {/* Year View */}
+              <View
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  justifyContent: 'space-around',
+                  flexDirection: 'row',
+                  width: width - 20,
+                  marginTop: 20,
+                }}>
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                  <Text
+                    style={{
+                      color: 'white',
+                      justifyContent: 'center',
+                      fontSize: 18,
+                      fontFamily: fontTypes.medium,
+                    }}>
+                    {formattedDate}
                   </Text>
-                </Animated.View>
-              ))}
+                  <Text
+                    style={{
+                      color: 'white',
+                      justifyContent: 'center',
+                      fontSize: 14,
+                      fontFamily: fontTypes.medium,
+                    }}>
+                    Year
+                  </Text>
+                </View>
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                  <Text
+                    style={{
+                      color: 'white',
+                      justifyContent: 'center',
+                      fontSize: 18,
+                      fontFamily: fontTypes.medium,
+                    }}>
+                    {detailsData.vote_average.toFixed(1)}
+                  </Text>
+                  <Text
+                    style={{
+                      color: 'white',
+                      justifyContent: 'center',
+                      fontSize: 14,
+                      fontFamily: fontTypes.medium,
+                    }}>
+                    IMDB
+                  </Text>
+                </View>
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                  <Text
+                    style={{
+                      color: 'white',
+
+                      fontSize: 18,
+                      fontFamily: fontTypes.medium,
+                    }}>
+                    2h 35m
+                  </Text>
+                  <Text
+                    style={{
+                      color: 'white',
+
+                      fontSize: 14,
+                      fontFamily: fontTypes.medium,
+                    }}>
+                    Time
+                  </Text>
+                </View>
+              </View>
+              {/* Year View end*/}
             </View>
-            <Text
-              style={{
-                color: 'white',
-                fontFamily: fontTypes.medium,
-                fontSize: 14,
-                margin: 12,
-                textAlign: 'justify',
-                lineHeight: 20,
-                textAlignVertical: 'center',
-              }}>
-              {detailsData.overview}
-            </Text>
+
+            {/* Geners Code Start */}
+            <View style={{marginTop: 14}}>
+              <View
+                style={{
+                  height: 25,
+                  borderRadius: 10,
+                  width: 70,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: 'white',
+                  flexDirection: 'row',
+                  marginLeft: 12,
+                  marginTop: 12,
+                }}>
+                <Text
+                  style={{
+                    color: 'black',
+                    fontFamily: fontTypes.medium,
+                  }}>
+                  Genres
+                </Text>
+                {/* </LinearGradient> */}
+              </View>
+              <View style={{marginTop: 12}}>
+                <Genres />
+              </View>
+              <View
+                style={{
+                  height: 25,
+                  borderRadius: 10,
+                  width: 70,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: 'white',
+                  flexDirection: 'row',
+                  marginLeft: 12,
+                  marginTop: 15,
+                }}>
+                <Text
+                  style={{
+                    color: 'black',
+                    fontFamily: fontTypes.medium,
+                  }}>
+                  Story
+                </Text>
+              </View>
+
+              <View style={{marginTop: 5}}>
+                <Text
+                  style={{
+                    color: 'white',
+                    fontFamily: fontTypes.medium,
+                    fontSize: 14,
+                    margin: 12,
+                    textAlign: 'justify',
+                    lineHeight: 20,
+                    textAlignVertical: 'center',
+                  }}>
+                  {detailsData.overview.slice(0, 300)}
+                </Text>
+              </View>
+            </View>
+            {/* Geners Code Start End */}
           </View>
-          <View style={{margin: 1}}>
-            <RecombidedMovie />
-          </View>
+        )}
+        <View style={{flex: 1, backgroundColor: 'black'}}>
+          <ActorCast id={id} />
         </View>
-      )}
-    </>
+        <View style={{flex: 1, backgroundColor: 'black'}}>
+          <RecommendedMovies id={id} />
+        </View>
+      </ScrollView>
+    </View>
   );
 }

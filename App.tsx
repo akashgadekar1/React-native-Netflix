@@ -33,6 +33,7 @@ import Details from './src/screens/Details';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Homescreens from './src/screens/Homescreens';
+import RecombidedMovie from './src/components/details/RecommendedMovies';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,7 +43,7 @@ const App = () => {
       <Provider store={store}>
         <Stack.Navigator>
           <Stack.Screen
-            name="HomeScreen"
+            name="Home"
             component={Homescreens}
             options={{
               headerShown: false,

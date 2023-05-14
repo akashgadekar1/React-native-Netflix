@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, ImageBackground, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {ColorTypes, fontTypes, width} from '../../config/Config';
+import FastImage from 'react-native-fast-image';
 
 export type MovieDetailsPageProps = {
   url: string;
@@ -16,19 +17,19 @@ const MainCard2: React.FC<MovieDetailsPageProps> = ({
   vote_average,
 }) => {
   return (
-    <View style={{backgroundColor: ColorTypes.black, flex: 1}}>
-      <ImageBackground
+    <View style={{backgroundColor: ColorTypes.black, flex: 1, borderRadius: 8}}>
+      <FastImage
         source={{
           uri: url,
         }}
         resizeMode="contain"
-        imageStyle={{borderRadius: 8}}
         style={{
           height: 200,
           width: width - 60,
           marginTop: 10,
           marginLeft: 10,
           marginRight: 10,
+          // borderRadius: 8,
         }}>
         <LinearGradient
           colors={['transparent', ColorTypes.black]}
@@ -89,7 +90,7 @@ const MainCard2: React.FC<MovieDetailsPageProps> = ({
             </View>
           </View>
         </LinearGradient>
-      </ImageBackground>
+      </FastImage>
     </View>
   );
 };

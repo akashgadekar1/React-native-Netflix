@@ -3,6 +3,7 @@ import {all, fork} from 'redux-saga/effects';
 import {watchGetMovieWeekAsync} from './TrendingWeek/saga';
 import {watchGetMovieRecommendAsync} from './RecombdedMovie/saga';
 import {watchGetDetailsAsync} from './Details/saga';
+import {watchGetCastDetailsAsync} from './CastCredit/saga';
 
 export function* rootSaga() {
   yield all([
@@ -10,5 +11,6 @@ export function* rootSaga() {
     fork(watchGetMovieWeekAsync),
     fork(watchGetMovieRecommendAsync),
     fork(watchGetDetailsAsync),
+    fork(watchGetCastDetailsAsync),
   ]);
 }
