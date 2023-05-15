@@ -1,15 +1,11 @@
-import {View, Text, ScrollView, Pressable} from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
+import {GetComedyMovie} from '../../Redux/ComedyMovie/action';
+import {View, Text, ScrollView, Pressable} from 'react-native';
 
-import {GetActionMovie} from '../../Redux/ActionMovie/action';
+import {PortraitImageBaseURL, fontTypes} from '../../config/Config';
 import {MainCard} from '../CardCompoent/MainCard';
-import {
-  LandScapeImageBaseURL,
-  PortraitImageBaseURL,
-  fontTypes,
-} from '../../config/Config';
 
 export type MovieResponse = {
   id: string;
@@ -18,19 +14,18 @@ export type MovieResponse = {
   poster_path: string;
 };
 
-function ActionMovie() {
+export default function ComedyMovie() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const actionmovie = useSelector(state => state.ActionMovie.respdata);
+  const comedyMovie = useSelector(state => state.Comedy.respdata);
 
   useEffect(() => {
-    dispatch(GetActionMovie());
+    dispatch(GetComedyMovie());
   }, []);
 
   const navigate = (id: string) => {
     navigation.navigate('DetailScreen', {id: id});
   };
-
   return (
     <View>
       <Text
@@ -41,12 +36,12 @@ function ActionMovie() {
           fontFamily: fontTypes.medium,
           fontSize: 20,
         }}>
-        Action Movie
+        Comedy Movie
       </Text>
       <ScrollView horizontal>
-        {actionmovie &&
-          actionmovie.length > 0 &&
-          actionmovie.map((item: MovieResponse, index: number) => {
+        {comedyMovie &&
+          comedyMovie.length > 0 &&
+          comedyMovie.map((item: MovieResponse, index: number) => {
             return (
               <Pressable key={index} onPress={() => navigate(item.id)}>
                 <MainCard
@@ -60,4 +55,3 @@ function ActionMovie() {
     </View>
   );
 }
-export default ActionMovie;

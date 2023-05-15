@@ -2,14 +2,9 @@ import {View, Text, ScrollView, Pressable} from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-
-import {GetActionMovie} from '../../Redux/ActionMovie/action';
+import {GetMusicMovie} from '../../Redux/MusicMovie/action';
 import {MainCard} from '../CardCompoent/MainCard';
-import {
-  LandScapeImageBaseURL,
-  PortraitImageBaseURL,
-  fontTypes,
-} from '../../config/Config';
+import {PortraitImageBaseURL, fontTypes} from '../../config/Config';
 
 export type MovieResponse = {
   id: string;
@@ -18,19 +13,18 @@ export type MovieResponse = {
   poster_path: string;
 };
 
-function ActionMovie() {
+export default function CrimeMovie() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const actionmovie = useSelector(state => state.ActionMovie.respdata);
+  const MusicMovie = useSelector(state => state.Music.respdata);
 
   useEffect(() => {
-    dispatch(GetActionMovie());
+    dispatch(GetMusicMovie());
   }, []);
 
   const navigate = (id: string) => {
     navigation.navigate('DetailScreen', {id: id});
   };
-
   return (
     <View>
       <Text
@@ -41,12 +35,12 @@ function ActionMovie() {
           fontFamily: fontTypes.medium,
           fontSize: 20,
         }}>
-        Action Movie
+        Music Movie
       </Text>
       <ScrollView horizontal>
-        {actionmovie &&
-          actionmovie.length > 0 &&
-          actionmovie.map((item: MovieResponse, index: number) => {
+        {MusicMovie &&
+          MusicMovie.length > 0 &&
+          MusicMovie.map((item: MovieResponse, index: number) => {
             return (
               <Pressable key={index} onPress={() => navigate(item.id)}>
                 <MainCard
@@ -60,4 +54,3 @@ function ActionMovie() {
     </View>
   );
 }
-export default ActionMovie;

@@ -5,6 +5,10 @@ import {watchGetMovieRecommendAsync} from './RecombdedMovie/saga';
 import {watchGetDetailsAsync} from './Details/saga';
 import {watchGetCastDetailsAsync} from './CastCredit/saga';
 import {watchGetActionMovieAsync} from './ActionMovie/saga';
+import {watchGetAnimationMovieAsync} from './AnnimationMovie/saga';
+import {watchGetComedyMovieAsync} from './ComedyMovie/saga';
+import {watchGetCrimeMovieAsync} from './CrimeMovie/saga';
+import {watchGetMusicMovieAsync} from './MusicMovie/saga';
 
 export function* rootSaga() {
   yield all([
@@ -14,5 +18,9 @@ export function* rootSaga() {
     fork(watchGetDetailsAsync),
     fork(watchGetCastDetailsAsync),
     fork(watchGetActionMovieAsync),
+    fork(watchGetAnimationMovieAsync),
+    fork(watchGetComedyMovieAsync),
+    fork(watchGetCrimeMovieAsync),
+    fork(watchGetMusicMovieAsync),
   ]);
 }
