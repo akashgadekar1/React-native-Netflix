@@ -1,12 +1,11 @@
-import {View, Text, ScrollView} from 'react-native';
-import React, {useEffect, useRef} from 'react';
-import {MovieResponse} from '../../CardsCompoents/TrendingCard';
+import React, {useEffect} from 'react';
+import {Pressable, ScrollView, Text, View} from 'react-native';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {GetMovieDetailsRecommend} from '../../../Redux/RecombdedMovie/action';
-import {LandScapeImageBaseURL, fontTypes} from '../../../config/Config';
+import {PortraitImageBaseURL, fontTypes} from '../../../config/Config';
 
-import Recombinded from '../../ReusableCompoents/Recombinded';
+import {useNavigation} from '@react-navigation/native';
 import {MainCard} from '../../CardCompoent/MainCard';
 
 export type RecommendedMoviesTypes = {
@@ -15,12 +14,17 @@ export type RecommendedMoviesTypes = {
 
 const RecommendedMovies: React.FC<RecommendedMoviesTypes> = ({id}) => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const recommended = useSelector(state => state.Recommbeded.respdata);
 
   useEffect(() => {
     dispatch(GetMovieDetailsRecommend(id));
   }, []);
+
+  const navigate = (id: string) => {
+    navigation.push('DetailScreen', {id: id});
+  };
 
   return (
     <View style={{flex: 1, backgroundColor: 'black'}}>
@@ -41,10 +45,12 @@ const RecommendedMovies: React.FC<RecommendedMoviesTypes> = ({id}) => {
           recommended.length > 0 &&
           recommended.map((item, index: number) => {
             return (
-              <MainCard
-                key={index}
-                url={LandScapeImageBaseURL + item.poster_path}
-              />
+              <Pressable key={index} onPress={() => navigate(item.id)}>
+                <MainCard
+                  key={index}
+                  url={PortraitImageBaseURL + item.poster_path}
+                />
+              </Pressable>
             );
           })}
       </ScrollView>

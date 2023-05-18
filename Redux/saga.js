@@ -9,6 +9,7 @@ import {watchGetAnimationMovieAsync} from './AnnimationMovie/saga';
 import {watchGetComedyMovieAsync} from './ComedyMovie/saga';
 import {watchGetCrimeMovieAsync} from './CrimeMovie/saga';
 import {watchGetMusicMovieAsync} from './MusicMovie/saga';
+import {watchGetSearchAsync} from './SearchMovie/saga';
 
 export function* rootSaga() {
   yield all([
@@ -22,5 +23,6 @@ export function* rootSaga() {
     fork(watchGetComedyMovieAsync),
     fork(watchGetCrimeMovieAsync),
     fork(watchGetMusicMovieAsync),
+    fork(watchGetSearchAsync),
   ]);
 }

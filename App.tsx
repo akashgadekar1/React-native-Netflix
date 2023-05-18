@@ -34,6 +34,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Homescreens from './src/screens/Homescreens';
 import RecombidedMovie from './src/components/details/RecommendedMovies';
+import SerachScreen from './src/screens/SerachScreen';
+import Login from './src/screens/Login';
+import OTPScreen from './src/screens/OTPScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +48,13 @@ const App = () => {
           screenOptions={{
             animation: 'slide_from_right',
           }}>
+          {/* <Stack.Screen
+            name="LoginScreen"
+            component={Login}
+            options={{
+              headerShown: false,
+            }}
+          />
           <Stack.Screen
             name="Home"
             component={Homescreens}
@@ -55,6 +65,20 @@ const App = () => {
           <Stack.Screen
             name="DetailScreen"
             component={Details}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="serachscreens"
+            component={SerachScreen}
+            options={{
+              headerShown: false,
+            }}
+          /> */}
+          <Stack.Screen
+            name="OTPScreen"
+            component={OTPScreen}
             options={{
               headerShown: false,
             }}

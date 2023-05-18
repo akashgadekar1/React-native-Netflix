@@ -1,20 +1,48 @@
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {
+  ImageBackground,
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React from 'react';
 
 import LinearGradient from 'react-native-linear-gradient';
 import {ColorTypes, fontTypes, height, width} from '../../config/Config';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {useNavigation} from '@react-navigation/native';
+import FastImage from 'react-native-fast-image';
 
 export default function Home() {
+  const navigation = useNavigation();
+
+  const navigate = () => {
+    navigation.navigate('serachscreens');
+  };
   return (
     <>
-      <ImageBackground
+      <FastImage
         source={{
           uri: 'https://myhotposters.com/cdn/shop/products/mL6443_1024x1024.jpg?v=1671141570',
         }}
-        resizeMode="contain"
-        imageStyle={{borderRadius: 8}}
+        resizeMode="cover"
         style={styles.ImageView}>
+        {/* Search Icon Home Screen */}
+        <View
+          style={{
+            right: 0,
+            position: 'absolute',
+            marginTop: StatusBar.currentHeight + 10,
+            marginRight: 26,
+            borderRadius: 8,
+          }}>
+          <Pressable onPress={() => navigate('serachscreens')}>
+            <Icon name="search1" size={25} color="white" />
+          </Pressable>
+        </View>
+        {/* Search Icon Home Screen End */}
+
         <LinearGradient
           colors={['transparent', ColorTypes.black]}
           style={styles.LinearGradientView}>
@@ -25,6 +53,7 @@ export default function Home() {
               </Text>
               <Text style={styles.text}>My List</Text>
             </View>
+
             <View style={styles.TextIconButton}>
               <Text
                 style={{
@@ -44,7 +73,7 @@ export default function Home() {
             </View>
           </View>
         </LinearGradient>
-      </ImageBackground>
+      </FastImage>
     </>
   );
 }

@@ -19,8 +19,8 @@ export default function Homescreens() {
         <ActionMovie />
         <MusicMovie />
         <CrimeMovie />
-        <AnimationMovie />
-        <ComedyMovie />
+        {/* <AnimationMovie />
+        <ComedyMovie /> */}
       </ScrollView>
     </View>
   );

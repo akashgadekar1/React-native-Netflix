@@ -53,6 +53,8 @@ function Trendingday() {
                 <MainCard
                   key={index}
                   url={LandScapeImageBaseURL + item.poster_path}
+                  // release_date={item.release_date}
+                  // vote_average={item.vote_average.toFixed(1)}
                 />
               </Pressable>
             );

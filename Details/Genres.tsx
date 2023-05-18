@@ -20,24 +20,46 @@ export default function Genres() {
   }, []);
 
   return (
-    <View style={{flexDirection: 'row'}}>
-      {detailsData.genres.map((item = String, index: number) => (
-        <Animated.View
-          entering={FadeInDown}
+    <>
+      <View
+        style={{
+          height: 25,
+          borderRadius: 10,
+          width: 70,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: 'white',
+          flexDirection: 'row',
+          marginLeft: 12,
+          marginBottom: 12,
+        }}>
+        <Text
           style={{
-            height: 25,
-            marginLeft: 10,
-            paddingHorizontal: 5,
-            borderWidth: 1,
-            borderColor: 'gray',
-            justifyContent: 'center',
-            alignItems: 'center',
+            color: 'black',
+            fontFamily: fontTypes.medium,
           }}>
-          <Text style={{color: 'white', fontFamily: fontTypes.medium}}>
-            {item.name}
-          </Text>
-        </Animated.View>
-      ))}
-    </View>
+          Genres
+        </Text>
+      </View>
+      <View style={{flexDirection: 'row'}}>
+        {detailsData.genres.map((item = String, index: number) => (
+          <Animated.View
+            entering={FadeInDown}
+            style={{
+              height: 25,
+              marginLeft: 10,
+              paddingHorizontal: 5,
+              borderWidth: 1,
+              borderColor: 'gray',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={{color: 'white', fontFamily: fontTypes.medium}}>
+              {item.name}
+            </Text>
+          </Animated.View>
+        ))}
+      </View>
+    </>
   );
 }
