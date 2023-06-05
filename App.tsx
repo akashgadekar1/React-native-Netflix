@@ -1,91 +1,67 @@
-import React from 'react';
-import MovieDetailsPage from './src/Component/MovieDetailsPage';
-import {
-  Image,
-  ImageBackground,
-  ScrollView,
-  StatusBar,
-  View,
-} from 'react-native';
-
-import ComponentsProps from './Compoents/Components';
-import InputGetTextBox from './Compoents/InputGetTextBox';
-import ListfaltCompoent from './Compoents/ListfaltCompoent';
-import CompoentMap from './Compoents/CompoentMap';
-import CompoentSectionList from './Compoents/CompoentSectionList';
-import CompoentHideAndShow from './Compoents/CompoentHideAndShow';
-import ResponsiveUi from './Compoents/ResponsiveUi';
-import CompoentTouchbelHigjlight from './Compoents/CompoentTouchbelHigjlight';
-import CompoentLoader from './Compoents/CompoentLoader';
-import CompoentModel from './Compoents/CompoentModel';
-import NavtgationCompoents from './Compoents/NavtgationCompoents';
-import TabNavigationCompoent from './Compoents/TabNavigationCompoent';
-import ApiCompoent from './Compoents/ApiCompoent';
-import CompoentJson from './Compoents/CompoentJson';
-import {store} from './Redux/store';
+import React, {useEffect} from 'react';
 import {Provider} from 'react-redux';
-import {ColorTypes} from './config/Config';
-import TrendingCard from './src/CardsCompoents/TrendingCard';
-
-import TrendingWeekCard from './src/CardsCompoents/TrendingWeekCard';
-import Home from './src/CardCompoent/Home';
-import Details from './src/screens/Details';
+import {store} from './Redux/store';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Details from './src/screens/Details';
 import Homescreens from './src/screens/Homescreens';
-import RecombidedMovie from './src/components/details/RecommendedMovies';
-import SerachScreen from './src/screens/SerachScreen';
 import Login from './src/screens/Login';
+import SerachScreen from './src/screens/SerachScreen';
+import {StatusBar, Text, View} from 'react-native';
+// import RNBootSplash from 'react-native-bootsplash';
+import ListfaltCompoent from './Compoents/ListfaltCompoent';
 import OTPScreen from './src/screens/OTPScreen';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Provider store={store}>
-        <Stack.Navigator
-          screenOptions={{
-            animation: 'slide_from_right',
-          }}>
-          {/* <Stack.Screen
-            name="LoginScreen"
-            component={Login}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="Home"
-            component={Homescreens}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="DetailScreen"
-            component={Details}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="serachscreens"
-            component={SerachScreen}
-            options={{
-              headerShown: false,
-            }}
-          /> */}
-          <Stack.Screen
-            name="OTPScreen"
-            component={OTPScreen}
-            options={{
-              headerShown: false,
-            }}
-          />
-        </Stack.Navigator>
-      </Provider>
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        <Provider store={store}>
+          <Stack.Navigator
+            screenOptions={{
+              animation: 'slide_from_right',
+            }}>
+            <Stack.Screen
+              name="LoginScreen"
+              component={Login}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Home"
+              component={Homescreens}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="DetailScreen"
+              component={Details}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="serachscreens"
+              component={SerachScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="OTPScreen"
+              component={OTPScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Navigator>
+        </Provider>
+      </NavigationContainer>
+    </>
   );
 };
 

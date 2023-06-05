@@ -15,12 +15,12 @@ export default function Homescreens() {
       <ScrollView>
         <Home />
         <TrendingCard />
+        <AnimationMovie />
         <TrendingWeekCard />
         <ActionMovie />
         <MusicMovie />
-        <CrimeMovie />
-        {/* <AnimationMovie />
-        <ComedyMovie /> */}
+
+        <ComedyMovie />
       </ScrollView>
     </View>
   );

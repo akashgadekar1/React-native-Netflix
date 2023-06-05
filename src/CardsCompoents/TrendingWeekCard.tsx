@@ -1,11 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Pressable, ScrollView, Text, View} from 'react-native';
-
 import {useDispatch, useSelector} from 'react-redux';
-
 import {fontTypes, PortraitImageBaseURL} from '../../config/Config';
 import {GetMovieWeek} from '../../Redux/TrendingWeek/action';
-
 import MainCard2 from '../CardCompoent/MainCard2';
 import {GetMovieDetails} from '../../Redux/TrendingDay/action';
 import {useNavigation} from '@react-navigation/native';
@@ -25,15 +22,17 @@ function TrendingWeekCard() {
   };
   return (
     <View>
-      <Text
-        style={{
-          color: 'white',
-          margin: 10,
-          fontFamily: fontTypes.medium,
-          fontSize: 20,
-        }}>
-        Trending Movie Week
-      </Text>
+      {MovieDay && MovieDay.length > 0 && (
+        <Text
+          style={{
+            color: 'white',
+            margin: 10,
+            fontFamily: fontTypes.medium,
+            fontSize: 20,
+          }}>
+          Trending Movie Week
+        </Text>
+      )}
       <ScrollView horizontal>
         {MovieDay &&
           MovieDay.length > 0 &&

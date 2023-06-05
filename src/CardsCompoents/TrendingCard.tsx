@@ -34,16 +34,18 @@ function Trendingday() {
 
   return (
     <View>
-      <Text
-        style={{
-          color: 'white',
-          marginTop: 20,
-          marginLeft: 10,
-          fontFamily: fontTypes.medium,
-          fontSize: 20,
-        }}>
-        Trending Movie Day
-      </Text>
+      {MovieDay && MovieDay.length > 0 && (
+        <Text
+          style={{
+            color: 'white',
+            marginTop: 20,
+            marginLeft: 10,
+            fontFamily: fontTypes.medium,
+            fontSize: 20,
+          }}>
+          Trending Movie Day
+        </Text>
+      )}
       <ScrollView horizontal>
         {MovieDay &&
           MovieDay.length > 0 &&

@@ -27,16 +27,18 @@ export default function CrimeMovie() {
   };
   return (
     <View>
-      <Text
-        style={{
-          color: 'white',
-          marginTop: 20,
-          marginLeft: 10,
-          fontFamily: fontTypes.medium,
-          fontSize: 20,
-        }}>
-        Music Movie
-      </Text>
+      {MusicMovie && MusicMovie.length > 0 && (
+        <Text
+          style={{
+            color: 'white',
+            marginTop: 20,
+            marginLeft: 10,
+            fontFamily: fontTypes.medium,
+            fontSize: 20,
+          }}>
+          Music Movie
+        </Text>
+      )}
       <ScrollView horizontal>
         {MusicMovie &&
           MusicMovie.length > 0 &&

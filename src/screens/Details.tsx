@@ -1,12 +1,4 @@
-import {
-  ActivityIndicator,
-  ImageBackground,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {
   ColorTypes,
@@ -25,8 +17,7 @@ import Genres from '../../Details/Genres';
 import ActorCast from '../../Details/ActorCast';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Home from '../CardCompoent/Home';
-import RecombidedMovie from '../components/details/RecommendedMovies';
-import Recombinded from '../ReusableCompoents/Recombinded';
+
 import RecommendedMovies from '../components/details/RecommendedMovies';
 import FastImage from 'react-native-fast-image';
 
